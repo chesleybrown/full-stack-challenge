@@ -1,0 +1,24 @@
+{
+	"name": "invision-full-stack-challenge",
+	"description": "Producer/Consumer system where producer generates a random equation for consumer to solve.",
+	"version": "0.0.1",
+	"scripts": {
+		"test": "grunt test"
+	},
+	"engines": {
+		"node": "0.12.5",
+		"npm": "2.7.4"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/chesleybrown/invision-full-stack-challenge.git"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"grunt": "^0.4.5",
+		"grunt-cli": "^0.1.13",
+		"grunt-tabs4life": "^1.0.11",
+		"load-grunt-tasks": "^3.2.0"
+	}
+}
