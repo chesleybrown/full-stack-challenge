@@ -26,8 +26,10 @@ the public event feed. If it can't evaluate the expression, it will broadcast
 an error instead.
 
 1. Run `npm run consumer`
+1. Visit [http://localhost:3000/](http://localhost:3000/) in a modern browser
 
-Once the Consumer is running you can visit http://localhost:3000/ in a modern
+Once the Consumer is running you can visit
+[http://localhost:3000/](http://localhost:3000/) in a modern
 browser and get the expression interface. This page will be automatically
 updated as expressions from any Producers are evaluated as well as when
 expressions fail to be evaluated.
