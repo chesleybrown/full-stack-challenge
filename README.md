@@ -1,5 +1,4 @@
-![App Logo](https://raw.githubusercontent.com/chesleybrown/full-stack-challenge/master/media/logo-small.png)
-Full-Stack Challenge
+![App Logo](https://raw.githubusercontent.com/chesleybrown/full-stack-challenge/master/media/logo-small.png) Full-Stack Challenge
 =========================
 [![Build Status](https://travis-ci.org/chesleybrown/full-stack-challenge.svg?branch=master)](https://travis-ci.org/chesleybrown/full-stack-challenge)
 [![Coverage Status](https://coveralls.io/repos/chesleybrown/full-stack-challenge/badge.svg?branch=master)](https://coveralls.io/r/chesleybrown/full-stack-challenge?branch=master)
