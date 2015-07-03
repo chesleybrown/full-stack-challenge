@@ -6,7 +6,7 @@
 	"keywords": ["node", "connect", "socket,io"],
 	"env": {
 		"CONSUMER_ADDRESS": {
-			"description": "The address to the publicly facing Consumer. Should include 'http://', but not the 'port'. Typically this will just be the public URL to the Heroku instance you're creating right now.",
+			"description": "The address to the publicly facing Consumer. Should include 'http://', but not the 'port'. Typically this will just be the public URL to the Heroku instance you're creating right now. For example: 'http://my-app-name.herokuapp.com'",
 			"value": ""
 		},
 		"CONSUMER_PORT": {
