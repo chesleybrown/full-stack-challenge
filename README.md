@@ -36,7 +36,8 @@ Once the Consumer is running you can visit
 [http://localhost:3000/](http://localhost:3000/) in a modern
 browser and get the expression interface. This page will be automatically
 updated as expressions from any Producers are evaluated as well as when
-expressions fail to be evaluated.
+expressions fail to be evaluated. The interface provides an input so you can
+manually enter your own expressions to have them evaluated live.
 
 The Consumer will log all of it's output to stdout.
 
