@@ -10,8 +10,8 @@ var Producer = require('./producer');
  * Determine range of random numbers using PRODUCER_LOW and PRODUCER_HIGH env
  * vars. If none set, default to 0 and 1000
  */
-var low = process.env.PRODUCER_LOW !== undefined ? process.env.PRODUCER_LOW : 0;
-var high = process.env.PRODUCER_HIGH !== undefined ? process.env.PRODUCER_HIGH : 1000;
+var low = process.env.PRODUCER_LOW !== undefined ? parseInt(process.env.PRODUCER_LOW) : 0;
+var high = process.env.PRODUCER_HIGH !== undefined ? parseInt(process.env.PRODUCER_HIGH) : 1000;
 var producer = new Producer(low, high);
 producer.connect(process.env.CONSUMER_ADDRESS || 'http://localhost', process.env.CONSUMER_PORT || 3000);
 
