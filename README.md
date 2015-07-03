@@ -1,5 +1,6 @@
 Full-Stack Challenge
 =========================
+[![Build Status](https://travis-ci.org/chesleybrown/full-stack-challenge.svg?branch=master)](https://travis-ci.org/chesleybrown/full-stack-challenge)
 [![Dependency Status](https://david-dm.org/chesleybrown/full-stack-challenge.svg)](https://david-dm.org/chesleybrown/full-stack-challenge)
 [![devDependency Status](https://david-dm.org/chesleybrown/full-stack-challenge/dev-status.svg)](https://david-dm.org/chesleybrown/full-stack-challenge#info=devDependencies)
 
