@@ -10,7 +10,7 @@
 			"value": ""
 		},
 		"CONSUMER_PORT": {
-			"description": "The port that the Consumer is listening on.",
+			"description": "The port that the Consumer is listening on. Most likely port 80.",
 			"value": "80"
 		},
 		"PRODUCER_LOW": {
