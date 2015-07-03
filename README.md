@@ -68,3 +68,13 @@ directory.
 
 Use the `npm run coverage` command to get the current code coverage report. It
 will also attempt to upload it to Coveralls.io if you have permission.
+
+## Diagrams
+
+### Activity Diagram
+
+![Activity Diagram](https://raw.githubusercontent.com/chesleybrown/full-stack-challenge/master/media/diagrams/activity-diagram.png)
+
+### Sequence Diagram
+
+![Sequence Diagram](https://raw.githubusercontent.com/chesleybrown/full-stack-challenge/master/media/diagrams/sequence-diagram.png)
