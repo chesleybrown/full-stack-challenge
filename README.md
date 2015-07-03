@@ -59,6 +59,11 @@ action. Simply click the Heroku deploy button below and follow the instructions.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+Once you have the app deployed on Heroku, you can increase the `producer` dyno
+to `1` to start a Producer service that will automatically start generating
+random expressions and sending them to the Consumer based on the interval you
+set for `PRODUCER_INTERVAL`.
+
 ## Running Tests
 
 Use the `npm test` command. This will validate the codestyle of the project
