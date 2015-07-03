@@ -10,6 +10,8 @@ Generator will send a series of random arithmetic expressions, while the
 Evaluator will accept these expressions, compute the result and then report the
 solution to the Generator.
 
+![What it looks like](https://raw.githubusercontent.com/chesleybrown/full-stack-challenge/master/media/screenshot.png)
+
 ## Requires
 
 - NodeJS
