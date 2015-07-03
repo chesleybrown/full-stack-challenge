@@ -15,7 +15,7 @@ var evaluatorService = new EvaluatorService();
 
 describe('Producer app', function () {
 	var producer, sandbox, http, io, connectionSpy, clock, socket;
-	var port = 3000;
+	var port = 3001;
 	
 	beforeEach(function () {
 		connectionSpy = sinon.spy();
@@ -43,7 +43,7 @@ describe('Producer app', function () {
 	describe('when starting', function () {
 		beforeEach(function (done) {
 			producer = new Producer();
-			producer.connect(3000);
+			producer.connect(port);
 			producer.socket.on('connect', function () {
 				done();
 			});

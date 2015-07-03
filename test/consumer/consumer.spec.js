@@ -13,7 +13,7 @@ var Consumer = require('../../src/consumer/consumer');
 
 describe('Consumer app', function () {
 	var consumer, sandbox;
-	var port = 3000;
+	var port = 3001;
 	
 	beforeEach(function () {
 		// Use sandbox because we are spying on a global
@@ -24,12 +24,12 @@ describe('Consumer app', function () {
 	describe('when starting', function () {
 		beforeEach(function () {
 			consumer = new Consumer();
-			consumer.listen(3000);
+			consumer.listen(port);
 		});
 		
 		it('should log message about listening on port', function () {
 			expect(logger.info).to.have.been.calledOnce;
-			expect(logger.info).to.have.been.calledWith('CONSUMER: Listening on port 3000');
+			expect(logger.info).to.have.been.calledWith('CONSUMER: Listening on port ' + port);
 		});
 		
 		describe('and connecting to it', function () {
