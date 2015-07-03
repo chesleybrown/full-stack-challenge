@@ -55,7 +55,7 @@
 			socket.on('all-answers', function (msg) {
 				$('#messages').prepend($('<div>').addClass('alert alert-success').text('Answer: ' + msg.expression + msg.answer));
 			});
-			socket.on('invalid', function (msg) {
+			socket.on('all-invalids', function (msg) {
 				$('#messages').prepend($('<div>').addClass('alert alert-danger').text('Invalid expression: ' + msg.expression));
 			});
 			

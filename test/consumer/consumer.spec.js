@@ -64,18 +64,21 @@ describe('Consumer app', function () {
 			
 			it('should respond to valid question to public feed', function (done) {
 				var invalidStub = sandbox.stub();
+				var invalid2Stub = sandbox.stub();
 				var answerStub = sandbox.stub();
 				var answer2Stub = sandbox.stub();
 				// socket2 is a different provider and only gets the answer on
 				// the public feed
-				socket2.on('invalid', invalidStub);
+				socket.on('invalid', invalidStub);
+				socket2.on('invalid', invalid2Stub);
 				socket.on('answer', answerStub);
 				socket2.on('answer', answer2Stub);
 				socket2.on('all-answers', function (msg) {
 					expect(logger.info).to.have.been.calledWith('CONSUMER: Sending expression answer ' + msg.expression + msg.answer + ' back to producer.');
 					expect(invalidStub).to.not.have.been.called;
-					expect(answer2Stub).to.not.have.been.called;
+					expect(invalid2Stub).to.not.been.called;
 					expect(answerStub).to.have.been.calledOnce;
+					expect(answer2Stub).to.not.have.been.called;
 					expect(msg.expression).to.equal('2+3=');
 					expect(msg.answer).to.equal(5);
 					done();
@@ -89,6 +92,30 @@ describe('Consumer app', function () {
 				socket.on('invalid', function (msg) {
 					expect(logger.info).to.have.been.calledWith('CONSUMER: Given expression "' + msg.expression + '" was invalid.');
 					expect(answerStub).to.not.have.been.called;
+					expect(msg.expression).to.equal('a+b=');
+					expect(msg.answer).to.be.undefined;
+					done();
+				});
+				socket.emit('question', {expression: 'a+b='});
+			});
+			
+			it('should respond to invalid question to public feed', function (done) {
+				var invalidStub = sandbox.stub();
+				var invalid2Stub = sandbox.stub();
+				var answerStub = sandbox.stub();
+				var answer2Stub = sandbox.stub();
+				// socket2 is a different provider and only gets the invalid event
+				// on the public feed
+				socket.on('invalid', invalidStub);
+				socket2.on('invalid', invalid2Stub);
+				socket.on('answer', answerStub);
+				socket2.on('answer', answer2Stub);
+				socket2.on('all-invalids', function (msg) {
+					expect(logger.info).to.have.been.calledWith('CONSUMER: Given expression "' + msg.expression + '" was invalid.');
+					expect(invalidStub).to.have.been.calledOnce;
+					expect(invalid2Stub).to.not.have.been.called;
+					expect(answerStub).to.not.have.been.called;
+					expect(answer2Stub).to.not.have.been.called;
 					expect(msg.expression).to.equal('a+b=');
 					expect(msg.answer).to.be.undefined;
 					done();

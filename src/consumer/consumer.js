@@ -51,7 +51,13 @@ module.exports = function () {
 			}
 			catch (err) {
 				logger.info('CONSUMER: Given expression "' + question.expression + '" was invalid.');
+				
+				// Respond back to the producer directly with the invalid
+				// message
 				socket.emit('invalid', {expression: question.expression});
+				
+				// Broadcast invalid request to public invalids feed
+				io.emit('all-invalids', {expression: question.expression});
 			}
 		});
 		
