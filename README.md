@@ -54,3 +54,6 @@ The Producer will log all of it's output to stdout.
 Use the `npm test` command. This will validate the codestyle of the project
 using the `tabs4life` coding standard as well as run all tests in the `test`
 directory.
+
+Use the `npm run coverage` command to get the current code coverage report. It
+will also attempt to upload it to Coveralls.io if you have permission.
