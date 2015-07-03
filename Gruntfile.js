@@ -16,6 +16,7 @@ module.exports = function (grunt) {
 					'.gitignore',
 					'Gruntfile.js',
 					'README.md',
+					'src/**/*.html',
 					'src/**/*.js',
 					'test/**/*.js'
 				]

@@ -3,6 +3,7 @@
 var log4js = require('log4js');
 var logger = log4js.getLogger();
 var connect = require('connect');
+var serveStatic = require('serve-static');
 
 var EvaluatorService = require('./evaluator.service');
 
@@ -28,6 +29,8 @@ module.exports = function () {
 	var http = require('http').Server(app);
 	var io = require('socket.io')(http);
 	
+	app.use(serveStatic(__dirname + '/web'));
+	
 	io.on('connection', function (socket) {
 		logger.info('CONSUMER: A producer has connected.');
 		
@@ -40,7 +43,11 @@ module.exports = function () {
 				var answer = evaluator.evaluateExpression(question.expression);
 				logger.info('CONSUMER: Sending expression answer ' + question.expression + answer + ' back to producer.');
 				
+				// Respond back to the producer directly with their answer
 				socket.emit('answer', {expression: question.expression, answer: answer});
+				
+				// Broadcast to answer to public answers feed
+				io.emit('all-answers', {expression: question.expression, answer: answer});
 			}
 			catch (err) {
 				logger.info('CONSUMER: Given expression "' + question.expression + '" was invalid.');

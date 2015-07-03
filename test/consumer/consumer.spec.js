@@ -33,21 +33,49 @@ describe('Consumer app', function () {
 		});
 		
 		describe('and connecting to it', function () {
-			var socket;
+			var socket, socket2;
 			
 			beforeEach(function (done) {
+				var count = 0;
+				
 				socket = io('http://localhost:' + port, {forceNew: true});
 				socket.on('connect', function () {
-					done();
+					count == 1 ? done() : count++;
+				});
+				
+				socket2 = io('http://localhost:' + port, {forceNew: true});
+				socket2.on('connect', function () {
+					count == 1 ? done() : count++;
 				});
 			});
 			
-			it('should respond to valid question', function (done) {
+			it('should respond to valid question directly to producer', function (done) {
 				var invalidStub = sandbox.stub();
 				socket.on('invalid', invalidStub);
 				socket.on('answer', function (msg) {
 					expect(logger.info).to.have.been.calledWith('CONSUMER: Sending expression answer ' + msg.expression + msg.answer + ' back to producer.');
 					expect(invalidStub).to.not.have.been.called;
+					expect(msg.expression).to.equal('2+3=');
+					expect(msg.answer).to.equal(5);
+					done();
+				});
+				socket.emit('question', {expression: '2+3='});
+			});
+			
+			it('should respond to valid question to public feed', function (done) {
+				var invalidStub = sandbox.stub();
+				var answerStub = sandbox.stub();
+				var answer2Stub = sandbox.stub();
+				// socket2 is a different provider and only gets the answer on
+				// the public feed
+				socket2.on('invalid', invalidStub);
+				socket.on('answer', answerStub);
+				socket2.on('answer', answer2Stub);
+				socket2.on('all-answers', function (msg) {
+					expect(logger.info).to.have.been.calledWith('CONSUMER: Sending expression answer ' + msg.expression + msg.answer + ' back to producer.');
+					expect(invalidStub).to.not.have.been.called;
+					expect(answer2Stub).to.not.have.been.called;
+					expect(answerStub).to.have.been.calledOnce;
 					expect(msg.expression).to.equal('2+3=');
 					expect(msg.answer).to.equal(5);
 					done();
