@@ -8,16 +8,16 @@ Generator will send a series of random arithmetic expressions, while the
 Evaluator will accept these expressions, compute the result and then report the
 solution to the Generator.
 
-# Requires
+## Requires
 
 - NodeJS
 - npm
 
-# Setup
+## Setup
 
 1. Run `npm install`
 
-# Running the Consumer
+## Running the Consumer
 
 The Consumer service listens for expressions from any Producers. Upon receiving
 an expression, it will attempt to evaluate it. If it's successful, it will emit
@@ -34,7 +34,7 @@ expressions fail to be evaluated.
 
 The Consumer will log all of it's output to stdout.
 
-# Running a Producer
+## Running a Producer
 
 The Producer service will generate a random arithmetic expression consiting of
 two integers and an operator, e.g. "2+3=". It will do this every second until
@@ -45,7 +45,7 @@ run as many Producer processes as your computer will support.
 
 The Producer will log all of it's output to stdout.
 
-# Running Tests
+## Running Tests
 
 Use the `npm test` command. This will validate the codestyle of the project
 using the `tabs4life` coding standard as well as run all tests in the `test`
