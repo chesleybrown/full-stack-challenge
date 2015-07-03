@@ -70,7 +70,7 @@ module.exports = function () {
 	// Start listening on the desired port
 	this.listen = function (port, callback) {
 		http.listen(port, callback);
-		logger.info('CONSUMER: Listening on port ' + port);
+		logger.info('CONSUMER: Listening on port ' + port + '.');
 	};
 	
 	// Use to stop the server from listening (shutdown)

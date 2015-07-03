@@ -8,3 +8,5 @@ var Consumer = require('./consumer');
  */
 var consumer = new Consumer();
 consumer.listen(process.env.PORT || 3000);
+
+module.exports = consumer;

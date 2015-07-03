@@ -32,7 +32,7 @@ describe('Consumer app', function () {
 		
 		it('should log message about listening on port', function () {
 			expect(logger.info).to.have.been.calledOnce;
-			expect(logger.info).to.have.been.calledWith('CONSUMER: Listening on port ' + port);
+			expect(logger.info).to.have.been.calledWith('CONSUMER: Listening on port ' + port + '.');
 		});
 		
 		describe('and connecting to it', function () {

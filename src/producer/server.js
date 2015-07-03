@@ -21,3 +21,5 @@ producer.socket.on('connect', function () {
 	var interval = process.env.PRODUCER_INTERVAL !== undefined ? process.env.PRODUCER_INTERVAL : 1000;
 	producer.autoRequester(interval);
 });
+
+module.exports = producer;
