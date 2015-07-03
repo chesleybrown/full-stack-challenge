@@ -1,9 +1,11 @@
 {
-	"name": "invision-full-stack-challenge",
+	"name": "full-stack-challenge",
 	"description": "Producer/Consumer system where producer generates a random equation for consumer to solve.",
 	"version": "0.0.1",
 	"scripts": {
-		"test": "grunt test && mocha --recursive"
+		"test": "grunt test && mocha --recursive",
+		"consumer": "node src/consumer/server.js",
+		"producer": "node src/producer/server.js"
 	},
 	"engines": {
 		"node": "0.12.5",
