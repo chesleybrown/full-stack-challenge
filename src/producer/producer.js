@@ -48,7 +48,7 @@ module.exports = function (low, high) {
 		
 		// Handles invalid responses
 		this.socket.on('invalid', function (msg) {
-			logger.info('PRODUCER: Consumer considers expression "' + msg.expression + '" invalid.');
+			logger.error('PRODUCER: Consumer considers expression "' + msg.expression + '" invalid.');
 		});
 	};
 	

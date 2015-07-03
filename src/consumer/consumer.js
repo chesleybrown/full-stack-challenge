@@ -50,7 +50,7 @@ module.exports = function () {
 				io.emit('all-answers', {expression: question.expression, answer: answer});
 			}
 			catch (err) {
-				logger.info('CONSUMER: Given expression "' + question.expression + '" was invalid.');
+				logger.error('CONSUMER: Given expression "' + question.expression + '" was invalid.');
 				
 				// Respond back to the producer directly with the invalid
 				// message

@@ -38,6 +38,7 @@ describe('Producer app', function () {
 		// Use sandbox because we are spying on a global
 		sandbox = sinon.sandbox.create();
 		sandbox.stub(logger, 'info');
+		sandbox.stub(logger, 'error');
 		clock = sandbox.useFakeTimers();
 	});
 	
@@ -99,7 +100,7 @@ describe('Producer app', function () {
 				var invalid = {expression: '4+3='};
 				producer.socket.on('invalid', function (msg) {
 					expect(msg).to.deep.equal(invalid);
-					expect(logger.info).to.have.been.calledWith('PRODUCER: Consumer considers expression "' + msg.expression + '" invalid.');
+					expect(logger.error).to.have.been.calledWith('PRODUCER: Consumer considers expression "' + msg.expression + '" invalid.');
 					done();
 				});
 				socket.emit('invalid', invalid);

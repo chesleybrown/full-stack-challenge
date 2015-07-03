@@ -19,6 +19,7 @@ describe('Consumer app', function () {
 		// Use sandbox because we are spying on a global
 		sandbox = sinon.sandbox.create();
 		sandbox.stub(logger, 'info');
+		sandbox.stub(logger, 'error');
 	});
 	
 	describe('when starting', function () {
@@ -92,7 +93,7 @@ describe('Consumer app', function () {
 				var answerStub = sandbox.stub();
 				socket.on('answer', answerStub);
 				socket.on('invalid', function (msg) {
-					expect(logger.info).to.have.been.calledWith('CONSUMER: Given expression "' + msg.expression + '" was invalid.');
+					expect(logger.error).to.have.been.calledWith('CONSUMER: Given expression "' + msg.expression + '" was invalid.');
 					expect(answerStub).to.not.have.been.called;
 					expect(msg.expression).to.equal('a+b=');
 					expect(msg.answer).to.be.undefined;
@@ -113,7 +114,7 @@ describe('Consumer app', function () {
 				socket.on('answer', answerStub);
 				socket2.on('answer', answer2Stub);
 				socket2.on('all-invalids', function (msg) {
-					expect(logger.info).to.have.been.calledWith('CONSUMER: Given expression "' + msg.expression + '" was invalid.');
+					expect(logger.error).to.have.been.calledWith('CONSUMER: Given expression "' + msg.expression + '" was invalid.');
 					expect(invalidStub).to.have.been.calledOnce;
 					expect(invalid2Stub).to.not.have.been.called;
 					expect(answerStub).to.not.have.been.called;
