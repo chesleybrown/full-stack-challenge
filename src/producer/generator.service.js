@@ -27,15 +27,24 @@ module.exports = function (low, high) {
 		return Math.floor(num);
 	};
 	
+	var randomOperator = function () {
+		return supportedOperators[Math.floor(Math.random() * supportedOperators.length)];
+	};
+	
 	/*
 	 * Generates a random math expression and returns it as a string. Only
 	 * supports +, -, * and / operators.
 	 *
 	 * Parameters
-	 * - operator: the math operator to use in the expression.
+	 * - operator: the math operator to use in the expression. If none is
+	 * provided then a random one is chosen.
 	 */
 	this.generateRandomExpression = function (operator) {
-		if (!operator || supportedOperators.indexOf(operator) == -1) {
+		if (!operator) {
+			operator = randomOperator();
+		}
+		
+		if (supportedOperators.indexOf(operator) == -1) {
 			throw new Error('Must provide a single operator that\'s one of (' + supportedOperators.join(',') + ')');
 		}
 		

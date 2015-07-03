@@ -42,7 +42,7 @@ describe('Generator service', function () {
 									result = service.generateRandomExpression(operator);
 								});
 								
-								it('shoud generate random number within provided range', function () {
+								it('shoud generate random numbers within provided range', function () {
 									expect(Math.random).to.have.been.calledTwice;
 									expect(Math.floor).to.have.been.calledTwice;
 								});
@@ -54,11 +54,33 @@ describe('Generator service', function () {
 						});
 					});
 					
+					describe('and not providing an operator', function () {
+						describe('with no given operator', function () {
+							var result;
+							
+							beforeEach(function () {
+								result = service.generateRandomExpression();
+							});
+							
+							it('shoud generate random numbers within provided range', function () {
+								expect(Math.random).to.have.been.callCount(3);
+								expect(Math.floor).to.have.been.callCount(3);
+							});
+							
+							it('shoud return a random operator expression', function () {
+								expect(result).to.match(expressionRegex);
+							});
+						});
+					});
+					
 					describe('and using an unsupported operator', function () {
-						_.each([undefined, '^', '!', '$', '**', '++', '-/', 'some-string'], function (operator) {
+						_.each(['^', '!', '$', '**', '++', '-/', 'some-string'], function (operator) {
 							describe('with (' + operator + ') operator', function () {
 								it('shoud throw error about invalid operator', function () {
-									expect(service.generateRandomExpression).to.throw(Error, 'Must provide a single operator that\'s one of (+,-,*,/)');
+									var generateWrapper = function () {
+										service.generateRandomExpression(operator);
+									};
+									expect(generateWrapper).to.throw(Error, 'Must provide a single operator that\'s one of (+,-,*,/)');
 								});
 							});
 						});
