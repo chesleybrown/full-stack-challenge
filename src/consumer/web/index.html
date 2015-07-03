@@ -12,6 +12,9 @@
 						Full-Stack Challenge
 					</a>
 				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a id="status" href="#"></a></li>
+				</ul>
 			</div>
 		</nav>
 		
@@ -54,6 +57,14 @@
 			});
 			socket.on('invalid', function (msg) {
 				$('#messages').prepend($('<div>').addClass('alert alert-danger').text('Invalid expression: ' + msg.expression));
+			});
+			
+			// Basic connection status display
+			socket.on('connect', function () {
+				$('#status').text('Connected');
+			});
+			socket.on('disconnect', function () {
+				$('#status').text('Disconnected');
 			});
 		</script>
 	</body>
