@@ -7,10 +7,16 @@ module.exports = function (grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		tabs4life: {
 			app: {
+				options: {
+					jshint: {
+						mocha: true
+					}
+				},
 				src: [
 					'.gitignore',
 					'Gruntfile.js',
 					'README.md',
+					'src/**/*.js',
 					'test/**/*.js'
 				]
 			}
