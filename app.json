@@ -1,0 +1,29 @@
+{
+	"name": "full-stack-challenge",
+	"description": "Producer/Consumer system where producer generates a random equation for consumer to solve.",
+	"repository": "https://github.com/chesleybrown/full-stack-challenge",
+	"logo": "https://raw.githubusercontent.com/chesleybrown/full-stack-challenge/master/media/logo.png",
+	"keywords": ["node", "connect", "socket,io"],
+	"env": {
+		"CONSUMER_ADDRESS": {
+			"description": "The address to the publicly facing Consumer. Should include 'http://', but not the 'port'. Typically this will just be the public URL to the Heroku instance you're creating right now.",
+			"value": ""
+		},
+		"CONSUMER_PORT": {
+			"description": "The port that the Consumer is listening on.",
+			"value": "80"
+		},
+		"PRODUCER_LOW": {
+			"description": "The lowest integer possible to randomly generate by a Producer.",
+			"value": "0"
+		},
+		"PRODUCER_HIGH": {
+			"description": "The highest integer possible to randomly generate by a Producer.",
+			"value": "1000"
+		},
+		"PRODUCER_INTERVAL": {
+			"description": "The interval in milliseconds for which the Producer should generate and pass expressions to the Consumer.",
+			"value": "1000"
+		}
+	}
+}

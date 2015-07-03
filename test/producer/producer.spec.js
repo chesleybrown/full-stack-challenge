@@ -15,6 +15,7 @@ var evaluatorService = new EvaluatorService();
 
 describe('Producer app', function () {
 	var producer, sandbox, http, io, connectionSpy, clock, socket;
+	var address = 'http://localhost';
 	var port = 3001;
 	
 	beforeEach(function () {
@@ -42,16 +43,17 @@ describe('Producer app', function () {
 	
 	describe('when starting', function () {
 		beforeEach(function (done) {
-			producer = new Producer();
-			producer.connect(port);
+			producer = new Producer(0, 10);
+			producer.connect(address, port);
 			producer.socket.on('connect', function () {
 				done();
 			});
 		});
 		
 		it('should log message about connecting to consumer', function () {
-			expect(logger.info).to.have.been.calledOnce;
-			expect(logger.info).to.have.been.calledWith('PRODUCER: Connected to consumer.');
+			expect(logger.info).to.have.been.calledTwice;
+			expect(logger.info).to.have.been.calledWith('PRODUCER: Attempting to connect to consumer at ' + address + ':' + port + '.');
+			expect(logger.info).to.have.been.calledWith('PRODUCER: Connected to consumer at ' + address + ':' + port + '.');
 			expect(connectionSpy).to.have.been.calledOnce;
 		});
 		
@@ -63,12 +65,12 @@ describe('Producer app', function () {
 					expect(msg.expression).to.match(evaluatorService.getRegex());
 					done();
 				});
-				producer.autoRequester();
+				producer.autoRequester(1000);
 			});
 			
 			it('should call itself again every interval', function () {
 				sandbox.spy(producer, 'autoRequester');
-				producer.autoRequester();
+				producer.autoRequester(1000);
 				clock.tick(500);
 				expect(producer.autoRequester).to.have.been.calledOnce;
 				clock.tick(500);

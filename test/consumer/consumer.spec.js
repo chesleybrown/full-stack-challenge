@@ -22,9 +22,11 @@ describe('Consumer app', function () {
 	});
 	
 	describe('when starting', function () {
-		beforeEach(function () {
+		beforeEach(function (done) {
 			consumer = new Consumer();
-			consumer.listen(port);
+			consumer.listen(port, function () {
+				done();
+			});
 		});
 		
 		it('should log message about listening on port', function () {

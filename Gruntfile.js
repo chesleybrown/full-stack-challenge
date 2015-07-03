@@ -13,8 +13,10 @@ module.exports = function (grunt) {
 					}
 				},
 				src: [
+					'*.json',
 					'.gitignore',
 					'Gruntfile.js',
+					'Procfile',
 					'README.md',
 					'src/**/*.html',
 					'src/**/*.js',

@@ -19,15 +19,23 @@ var GeneratorService = require('./generator.service');
  * - question: when using autoRequester will emit a question with a random
  * expression to solve.
  */
-module.exports = function () {
-	var generator = new GeneratorService(0, 100);
+module.exports = function (low, high) {
+	var generator = new GeneratorService(low, high);
 	
-	// Start listening on the desired port
-	this.connect = function (port) {
-		this.socket = io.connect('http://localhost:' + port, {forceNew: true});
+	/*
+	 * Start listening on the desired port
+	 *
+	 * Params
+	 * - address: the address for the Consumer to connect to (excluding port)
+	 * - port: the port the Consumer is listening on
+	 */
+	this.connect = function (address, port) {
+		var url = address + ':' + port;
+		logger.info('PRODUCER: Attempting to connect to consumer at ' + url + '.');
+		this.socket = io.connect(url, {forceNew: true});
 		
 		this.socket.on('connect', function () {
-			logger.info('PRODUCER: Connected to consumer.');
+			logger.info('PRODUCER: Connected to consumer at ' + url + '.');
 		});
 		this.socket.on('disconnect', function () {
 			logger.info('PRODUCER: Disconnected from consumer.');
@@ -45,15 +53,15 @@ module.exports = function () {
 	};
 	
 	// Generate a random expression every second and send it to the consumer
-	this.autoRequester = function () {
+	this.autoRequester = function (interval) {
 		var expression = generator.generateRandomExpression();
 		logger.info('PRODUCER: Sending expression ' + generator.generateRandomExpression() + ' to consumer.');
 		this.socket.emit('question', {expression: expression});
 		
 		var self = this;
 		setTimeout(function () {
-			self.autoRequester();
-		}, 1000);
+			self.autoRequester(interval);
+		}, interval);
 	};
 	
 	// Use to stop the server from listening (shutdown)

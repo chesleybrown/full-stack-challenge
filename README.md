@@ -1,3 +1,4 @@
+![App Logo](https://raw.githubusercontent.com/chesleybrown/full-stack-challenge/master/media/logo-small.png)
 Full-Stack Challenge
 =========================
 [![Build Status](https://travis-ci.org/chesleybrown/full-stack-challenge.svg?branch=master)](https://travis-ci.org/chesleybrown/full-stack-challenge)
@@ -51,6 +52,13 @@ run as many Producer processes as your computer will support.
 1. Run `npm run producer`
 
 The Producer will log all of it's output to stdout.
+
+# Running on Heroku
+
+You can freely deploy an instance of this application on Heroku to see it in
+action. Simply click the Heroku deploy button below and follow the instructions.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Running Tests
 

@@ -68,8 +68,8 @@ module.exports = function () {
 	});
 	
 	// Start listening on the desired port
-	this.listen = function (port) {
-		http.listen(port);
+	this.listen = function (port, callback) {
+		http.listen(port, callback);
 		logger.info('CONSUMER: Listening on port ' + port);
 	};
 	
