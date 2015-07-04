@@ -52,7 +52,13 @@ module.exports = function (low, high) {
 		});
 	};
 	
-	// Generate a random expression every second and send it to the consumer
+	/*
+	 * Generate a random expression every provided interval and send it to the
+	 * consumer.
+	 *
+	 * Params
+	 * - interval: the interval in milliseconds to generate random expressions
+	 */
 	this.autoRequester = function (interval) {
 		var expression = generator.generateRandomExpression();
 		logger.info('PRODUCER: Sending expression ' + generator.generateRandomExpression() + ' to consumer.');
