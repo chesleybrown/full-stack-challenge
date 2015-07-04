@@ -64,6 +64,11 @@ to `1` to start a Producer service that will automatically start generating
 random expressions and sending them to the Consumer based on the interval you
 set for `PRODUCER_INTERVAL`.
 
+## Demo
+
+You can view a live demo at http://full-stack-challenge-example.herokuapp.com
+which has a Producer running on a 5 minute interval.
+
 ## Running Tests
 
 Use the `npm test` command. This will validate the codestyle of the project
