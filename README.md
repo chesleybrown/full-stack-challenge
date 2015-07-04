@@ -52,7 +52,7 @@ run as many Producer processes as your computer will support.
 
 The Producer will log all of it's output to stdout.
 
-# Running on Heroku
+## Running on Heroku
 
 You can freely deploy an instance of this application on Heroku to see it in
 action. Simply click the Heroku deploy button below and follow the instructions.
